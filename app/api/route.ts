@@ -16,14 +16,16 @@ const retrieveTranslation = async (
   text: string,
   language: string
 ) => {
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  let YOUR_RESOURCE_NAME = 'willh';
+  let YOUR_DEPLOYMENT_NAME = 'gpt-35-turbo';
+  const response = await fetch(`https://${YOUR_RESOURCE_NAME}.openai.azure.com/openai/deployments/${YOUR_DEPLOYMENT_NAME}/chat/completions?api-version=2023-05-15`, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      "api-key": `${process.env.OPENAI_API_KEY}`,
     },
     method: "POST",
     body: JSON.stringify({
-      model: "gpt-3.5-turbo-0125",
+      model: "gpt-35-turbo",
       max_tokens: 2048,
       frequency_penalty: 0,
       presence_penalty: 0,
